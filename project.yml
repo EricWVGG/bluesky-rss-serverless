@@ -1,0 +1,24 @@
+parameters: {}
+environment: {}
+packages:
+  - name: some-function-name
+    shared: false
+    environment: {}
+    parameters: {}
+    annotations: {}
+    functions:
+      - name: post
+        binary: false
+        main: ""
+        runtime: nodejs:18
+        web: true
+        webSecure: false
+        parameters: {}
+        environment: { RSS_URL: "${RSS_URL}", BSKY_ID: "${BSKY_ID}", BSKY_PASSWORD: "${BSKY_PASSWORD}", BLOCK_REPLIES: "${BLOCK_REPLIES}", MAX_ATTEMPTS: "${MAX_ATTEMPTS}", PAUSE_BETWEEN_ATTEMPTS: "${PAUSE_BETWEEN_ATTEMPTS}" }
+        annotations: {}
+        limits: { memory: 512 }
+        triggers:
+          - name: every-weekday
+            sourceType: scheduler
+            sourceDetails:
+              cron: "0 15 * * 1-5"
