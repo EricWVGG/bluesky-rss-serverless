@@ -55,8 +55,6 @@ export const generateMessage = (data: RSSFeed): PostWithEmbed => {
   }
 
   const text = `${title}, by ${author}\n\n${description}`
-  // todo: add permalink? can we “rich text” it?
-  // note to self: it does not embed the cartoon, the opengraph description is confusing
 
   return {
     text,
