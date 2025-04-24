@@ -1,6 +1,6 @@
 # Bluesky RSS
 
-This is a script that checks an RSS feed, and will post the latest entry to a Bluesky account.
+This is a script that checks an RSS feed, and will post the latest entry to a Bluesky account. It's designed to run on the Digital Ocean serverless functions platform.
 
 I wrote this for my own purposes, so there's a couple hard-coded preferences to work around.
 

@@ -20,7 +20,6 @@ export const generateMessage = (latest: RSSItem): PostWithEmbed => {
   }
 
   const text = `${title}, by ${author}\n\n${description}`
-  // todo: add permalink? can we “rich text” it?
 
   return {
     text,
