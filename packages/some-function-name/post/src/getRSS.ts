@@ -1,6 +1,7 @@
 import "dotenv/config"
 import rssToJson from "rss-to-json"
 import { sleep } from "./sleep.js"
+import type { RSSFeed } from "./types.js"
 
 const { parse } = rssToJson
 
@@ -9,7 +10,7 @@ const MAX_ATTEMPTS = process.env.MAX_ATTEMPTS || 3
 const PAUSE_BETWEEN_ATTEMPTS = process.env.PAUSE_BETWEEN_ATTEMPTS || 3000
 // ^ three seconds (note: serverless functions cost money!)
 
-export const getRSS = async (attemptsLeft = Number(MAX_ATTEMPTS)) => {
+export const getRSS = async (attemptsLeft = Number(MAX_ATTEMPTS)): Promise<RSSFeed> => {
   if (RSS_URL === undefined || RSS_URL === "") {
     throw new Error("Required env var RSS_URL not found.")
   }

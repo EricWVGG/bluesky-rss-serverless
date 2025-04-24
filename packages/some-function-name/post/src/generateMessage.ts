@@ -1,3 +1,5 @@
+import type { RSSItem, PostWithEmbed } from "./types.js"
+
 /* 
 Take an RSS Item and transform it into a coherent Bluesky post.
 
@@ -9,44 +11,7 @@ This might involve something like…
 A bit of editorial license will be necessary.
 */
 
-export interface PostWithEmbed {
-  text: string
-  altText: string
-  imageUrl: string
-  width: string
-  height: string
-}
-
-export interface RSSFeed {
-  title: any
-  description: any
-  link: any
-  image: any
-  category: any
-  items: RSSItem[]
-}
-
-export interface RSSItem {
-  id: string
-  title: string
-  description: string
-  link: string
-  media?: {
-    thumbnail?: {
-      url: string
-      width: string
-      height: string
-    }
-  }
-  published: number
-  created: number
-  category: Array<string>
-  author: string
-}
-
-export const generateMessage = (data: RSSFeed): PostWithEmbed => {
-  const latest = data.items[0]
-
+export const generateMessage = (latest: RSSItem): PostWithEmbed => {
   const { title, description, author } = latest
   const { url, width, height } = latest?.media?.thumbnail
 
@@ -56,7 +21,6 @@ export const generateMessage = (data: RSSFeed): PostWithEmbed => {
 
   const text = `${title}, by ${author}\n\n${description}`
   // todo: add permalink? can we “rich text” it?
-  // note to self: it does not embed the cartoon, the opengraph description is confusing
 
   return {
     text,
